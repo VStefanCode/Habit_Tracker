@@ -1,0 +1,9 @@
+<div class="card m-3" style="width: 18rem; height: 22rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{habit.name}}</h5>
+    <input type="number" style="width: 70%;" [formControl]="tracking">
+    <p class="card-text truncate-overflow">{{habit.description}}</p>
+    <button (click)="onSubmit()" type="button" class="card-link">Save</button>
+    <button (click)="onCancel()" type="button" class="card-link">Cancel</button>
+  </div>
+</div>

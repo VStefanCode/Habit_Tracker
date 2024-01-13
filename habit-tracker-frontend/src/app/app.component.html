@@ -1,8 +1,1 @@
-<div class="d-flex justify-content-start flex-wrap">
-  <span *ngFor="let habit of habits">
-    <app-habit (deleteHabit)="deleteHabit($event)" [habit]="habit"></app-habit>
-  </span>
-  <span>
-    <app-new-habit (addHabit)="addHabit($event)"></app-new-habit>
-  </span>
-</div>
+<router-outlet></router-outlet>

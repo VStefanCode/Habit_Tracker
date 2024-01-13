@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-start flex-wrap">
+  <span *ngFor="let habit of habits">
+    <app-habit [habit]="habit"></app-habit>
+  </span>
+  <span>
+    <div class="card m-3 d-flex justify-content-center align-items-center" style="width: 18rem; height: 22rem; border: 5px dashed green">
+      <a routerLink="/habits/add" style="color: green; cursor: pointer; padding: 5px;">Add</a>
+    </div>
+  </span>
+</div>

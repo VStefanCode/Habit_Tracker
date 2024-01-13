@@ -1,14 +1,8 @@
-type Habit = {
-  id: number;
-  name: String;
-  description: String;
-  tracking: number;
-}
-
-export enum HabitState {
-  Display = 1,
-  Edit,
-  Tracking,
+class Habit {
+  id: number = 0;
+  name: String = "";
+  description: String = "";
+  tracking: number = 0;
 }
 
 export default Habit;
