@@ -24,7 +24,9 @@ export class HabitService {
   }
 
   addHabit(habit: Habit) {
-    return this._http.post(AppSettings.URL, habit);
+    return this._http.post(AppSettings.URL, habit).pipe(
+      tap(_ => this.fetchHabits().subscribe())
+    );
   }
 
   editHabit(habitId: number, name: String, description: String) {
@@ -36,7 +38,7 @@ export class HabitService {
 
         habits = habits.filter(habit => habit.id != habitId);
 
-        this.habits.next([...habits, habit])
+        this.habits.next([...habits, {...habit, name, description}])
       })
       );
   }

@@ -14,6 +14,5 @@ export class HabitListComponent implements OnInit {
 
   ngOnInit(): void {
     this._habitService.habits.subscribe(data => this.habits = data);
-    this._habitService.fetchHabits().subscribe({error: err => alert(err.message)});
   }
 }
