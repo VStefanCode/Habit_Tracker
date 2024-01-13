@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
+import Habit from 'src/app/model/habit';
 import { HabitService } from 'src/app/services/habit.service';
 
 @Component({
@@ -10,33 +11,24 @@ import { HabitService } from 'src/app/services/habit.service';
 })
 export class HabitEditComponent implements OnInit {
 
-  id: number = 0;
-  tracking: number = 0;
-
-  editHabitForm = new FormGroup({
-    name: new FormControl(new String('')),
-    description: new FormControl(new String(''))
-  });
+  habit: Habit = {id: 0, name: "", description: "", tracking: 0};
 
   constructor(private _habitService: HabitService, private _router: Router, private _activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.id = this._activatedRoute.snapshot.params['id'];
-    const habit = this._habitService.getHabit(this.id);
-    this.tracking = habit?.tracking!;
-    this.editHabitForm.setValue({name: habit?.name ?? null, description: habit?.description ?? null});
+    const id = this._activatedRoute.snapshot.params['id'];
+    of(this._habitService.getHabit(id) ?? {id: 0, name: "", description: "", tracking: 0}).subscribe(data => this.habit = data);
   }
 
-  onSubmit() {
-    const habit = this.editHabitForm.value;
-    this._habitService.editHabit(this.id, habit?.name ?? "", habit?.description ?? "").subscribe({
+  onSubmit(editedHabit: {name: String, description: String}) {
+    this._habitService.editHabit(this.habit.id, editedHabit.name, editedHabit.description).subscribe({
       next: _ => this._router.navigate(['/habits']),
       error: err => alert(err.message)
     });
   }
 
   onDelete() {
-    this._habitService.deleteHabit(this.id).subscribe({
+    this._habitService.deleteHabit(this.habit.id).subscribe({
       next: _ => this._router.navigate(['/habits']),
       error: err => alert(err.message)
     });

@@ -11,6 +11,7 @@ import { HabitComponent } from './components/habit/habit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HabitFormComponent } from './components/habit-form/habit-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HabitEditComponent,
     HabitAddComponent,
     HabitTrackComponent,
-    HabitComponent
+    HabitComponent,
+    HabitFormComponent
   ],
   imports: [
     BrowserModule,

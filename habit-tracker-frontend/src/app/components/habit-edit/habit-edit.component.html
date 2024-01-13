@@ -1,12 +1,8 @@
-<form [formGroup]="editHabitForm" (submit)="onSubmit()">
-  <div class="card m-3" style="width: 18rem; height: 22rem;">
-    <div class="card-body">
-      <input id="name" formControlName="name" type="text" class="card-title">
-      <h6 class="card-subtitle mb-2 text-muted">{{tracking}}</h6>
-      <textarea id="description" formControlName="description" class="card-text" style="width: 100%; line-height: 1.4rem; height: 12.6rem;"></textarea>
-      <button type="submit" class="card-link">Save</button>
-      <button (click)="onDelete()" type="button" class="card-link">Delete</button>
-      <button (click)="onCancel()" type="button" class="card-link">Cancel</button>
-    </div>
-  </div>
-</form>
+<app-habit-form
+[canDelete]="true"
+[habit]="habit"
+(submitCalled)="onSubmit($event)"
+(deleteCalled)="onDelete()"
+(cancelCalled)="onCancel()">
+</app-habit-form>
+
