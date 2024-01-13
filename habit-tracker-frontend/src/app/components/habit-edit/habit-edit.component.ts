@@ -17,7 +17,7 @@ export class HabitEditComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this._activatedRoute.snapshot.params['id'];
-    of(this._habitService.getHabit(id) ?? {id: 0, name: "", description: "", tracking: 0}).subscribe(data => this.habit = data);
+    this.habit = this._habitService.getHabit(id) ?? {id: 0, name: "", description: "", tracking: 0};
   }
 
   onSubmit(editedHabit: {name: String, description: String}) {
